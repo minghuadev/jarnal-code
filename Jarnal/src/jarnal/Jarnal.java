@@ -6397,7 +6397,7 @@ System.out.println(target);
 
 	   if(action.equals("Screenshot Background")){
 		if(mscr) gJrnlFrame.setState(Frame.ICONIFIED);
-                try { Thread.sleep(800); }
+                try { Thread.sleep(1000); }
 		catch (InterruptedException ex) { ex.printStackTrace(); }
 		Jarnscr jscr = new Jarnscr(this, false, ascr);
 		(new Thread(jscr)).start();
@@ -6405,7 +6405,7 @@ System.out.println(target);
 
 	   if(action.equals("Screenshot Image")){
 		if(mscr) gJrnlFrame.setState(Frame.ICONIFIED);
-                try { Thread.sleep(800); }
+                try { Thread.sleep(1000); }
 		catch (InterruptedException ex) { ex.printStackTrace(); }
 		Jarnscr jscr = new Jarnscr(this, true, ascr);
 		(new Thread(jscr)).start();
