@@ -1,0 +1,20 @@
+#!/bin/bash
+
+. targets.txt
+
+if [ "$1" == "" ]; then
+	echo usage:
+	echo jarnal-make \<command\>
+	echo commands:
+	echo co checkout from svn
+	echo ci checkin to svn
+fi
+
+if [ "$1" == "co" ]; then
+	cd ~
+	svn co https://jarnal.svn.sourceforge.net/svnroot/jarnal jarnal-dev
+fi
+
+if [ "$1" == "ci" ]; then
+	svn -F release-notes.txt ci
+fi
