@@ -36,12 +36,11 @@ if [ $compile == true ]; then
 	echo compiling
 	cd $targ/src/
 	export CLASSPATH
-	javac -d ../build $jver jarnal/*.java
+	javac $jver jarnal/*.java
 fi
 
 if [ $1 == "build" ]; then
-	cp ~/$targ/$targ/src/jarnal/ver.txt ~/$targ/$targ/build/jarnal
-	cd ~/$targ/$targ/build
+	cd ~/$targ/$targ/src
 	jar cvfm $targ.jar ../../jmainclass.txt jarnal
 fi
 
