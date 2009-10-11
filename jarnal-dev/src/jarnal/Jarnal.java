@@ -197,6 +197,7 @@ public class Jarnal extends JApplet{
 		hlang = null;
 
                 System.out.println(language);
+		System.out.println("hi");
                 InputStream in = Jarnal.class.getResourceAsStream("languages/" + language + ".txt");
 
 		if (in == null) {
