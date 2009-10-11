@@ -2,6 +2,8 @@
 
 . targets.txt
 
+CLASSPATH=../lib/jpedalt.jar:../lib/itext-1.2.jar
+
 if [ "$1" == "" ]; then
 	echo usage:
 	echo jarnal-make \<command\>
@@ -11,10 +13,35 @@ if [ "$1" == "" ]; then
 fi
 
 if [ "$1" == "co" ]; then
+	echo checking out
 	cd ~
 	svn co https://jarnal.svn.sourceforge.net/svnroot/jarnal jarnal-dev
 fi
 
 if [ "$1" == "ci" ]; then
+	echo checking in
 	svn --force-log -F release-notes.txt ci
 fi
+
+compile=false
+if [ "$1" == "test" ]; then
+	compile=true
+fi
+
+if [ "$1" == "build" ]; then
+	compile=true
+fi
+
+if [ $compile == true ]; then
+	echo compiling
+	cd $targ/src/
+	export CLASSPATH
+	javac -d ../build $jver jarnal/*.java
+fi
+
+if [ $1 == "build" ]; then
+	cd ~/$targ/$targ/build
+	jar cvfm $targ.jar ../../jmainclass.txt jarnal
+fi
+
+
