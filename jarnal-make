@@ -40,6 +40,7 @@ if [ $compile == true ]; then
 fi
 
 if [ $1 == "build" ]; then
+	cp ~/$targ/$targ/src/jarnal/ver.txt ~/$targ/$targ/build/jarnal
 	cd ~/$targ/$targ/build
 	jar cvfm $targ.jar ../../jmainclass.txt jarnal
 fi
