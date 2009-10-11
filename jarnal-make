@@ -16,5 +16,5 @@ if [ "$1" == "co" ]; then
 fi
 
 if [ "$1" == "ci" ]; then
-	svn -F release-notes.txt ci
+	svn --force-log -F release-notes.txt ci
 fi
