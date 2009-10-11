@@ -2,7 +2,7 @@
 
 . targets.txt
 
-CLASSPATH=../lib/jpedalt.jar:../lib/itext-1.2.jar
+CLASSPATH=lib/jpedalt.jar:lib/itext-1.2.jar
 
 if [ "$1" == "" ]; then
 	echo usage:
@@ -40,8 +40,15 @@ if [ $compile == true ]; then
 fi
 
 if [ $1 == "build" ]; then
+	echo building jar file
 	cd ~/$targ/$targ/src
-	jar cvfm $targ.jar ../../jmainclass.txt jarnal
+	jar cvfm jarnal.jar ../../jmainclass.txt jarnal
+	echo building install file
+	cd jarnal
+	ver=`cat ver.txt`
+	echo $((ver + 1)) > ver.txt
+	cd ..
+	zip $targ-install.zip * lib/* templates/*
 fi
 
 
