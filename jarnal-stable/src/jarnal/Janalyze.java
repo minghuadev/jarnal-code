@@ -10,7 +10,7 @@ import java.awt.geom.*;
 import java.awt.event.*;
 import javax.swing.event.*;
 import java.awt.image.*;
-import java.awt.font.*;font
+import java.awt.font.*;
 
 class JDictionaryEditor extends JPanel {
 
