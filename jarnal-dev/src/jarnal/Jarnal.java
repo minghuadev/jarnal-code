@@ -197,7 +197,6 @@ public class Jarnal extends JApplet{
 		hlang = null;
 
                 System.out.println(language);
-		System.out.println("hi");
                 InputStream in = Jarnal.class.getResourceAsStream("languages/" + language + ".txt");
 
 		if (in == null) {
@@ -4348,7 +4347,7 @@ System.out.println(target);
 			File userDir = new File(System.getProperty("user.home"));
 			usd = "\nYour home directory is " + userDir;
 		}
-		JOptionPane.showConfirmDialog(gJrnlFrame, "Jarnal is a pen-centric journaling program. \nversion " + s.trim() + "\nWritten by David K. Levine and Gunnar Teege, August 2003 and released under the GNU license. \nCode and documentation at\nhttp://www.dklevine.com/general/software/tc1000/jarnal.htm." + usd,    "About Jarnal", JOptionPane.DEFAULT_OPTION);
+		JOptionPane.showConfirmDialog(gJrnlFrame, "Jarnal is a pen-centric journaling program. \nversion " + s.trim() + "\nWritten by David K. Levine, Gunnar Teege, and Gerhard Hagerer August 2003 and released under the GNU license. \nCode and documentation at\nhttp://www.dklevine.com/general/software/tc1000/jarnal.htm." + usd,    "About Jarnal", JOptionPane.DEFAULT_OPTION);
 	}
 
 	private String getConf(){

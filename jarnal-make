@@ -2,7 +2,11 @@
 
 . targets.txt
 
-CLASSPATH=lib/jpedalt.jar:lib/itext-1.2.jar
+makedir=`dirname $0`
+cd $makedir
+makedir=`pwd`
+
+CLASSPATH=${makedir}/lib/jpedalt.jar:${makedir}/lib/itext-1.2.jar
 
 if [ "$1" == "" ]; then
 	echo usage:
@@ -14,7 +18,7 @@ fi
 
 if [ "$1" == "co" ]; then
 	echo checking out
-	cd ~
+	cd ..
 	svn co https://jarnal.svn.sourceforge.net/svnroot/jarnal jarnal-dev
 fi
 
@@ -24,12 +28,19 @@ if [ "$1" == "ci" ]; then
 fi
 
 compile=false
+makejar=false
 if [ "$1" == "test" ]; then
 	compile=true
 fi
 
 if [ "$1" == "build" ]; then
 	compile=true
+	makejar=true
+fi
+
+if [ "$1" == "run" ]; then
+	compile=true
+	makejar=true
 fi
 
 if [ $compile == true ]; then
@@ -39,15 +50,26 @@ if [ $compile == true ]; then
 	javac $jver jarnal/*.java
 fi
 
-if [ $1 == "build" ]; then
+if [ $makejar == true ]; then
 	echo building jar file
-	cd ~/$targ/$targ/src
+	cd ${makedir}/${targ}/src
 	jar cvfm jarnal.jar ../../jmainclass.txt jarnal
-	echo building install file
 	cd jarnal
 	ver=`cat ver.txt`
 	echo $((ver + 1)) > ver.txt
+	rm *class
 	cd ..
+	mv -f jarnal.jar ../dist
+	cd ../dist
+fi
+
+if [ "$1" == "run" ]; then
+	java -Dfile.encoding=UTF-8 -Xmx192m -jar jarnal.jar	
+fi	
+
+if [ "$1" == "build" ]; then
+	echo building install file
+	cp -fr ${makedir}/lib .
 	zip $targ-install.zip * lib/* templates/*
 fi
 
