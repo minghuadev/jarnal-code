@@ -71,6 +71,7 @@ if [ "$1" == "build" ]; then
 	echo building install file
 	cp -fr ${makedir}/lib .
 	zip $targ-install.zip * lib/* templates/*
+	mv $targ-install.zip ../release
 fi
 
 
