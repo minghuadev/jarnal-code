@@ -1498,7 +1498,8 @@ class printOptionsListener implements ActionListener {
 	}
 }
 
-class saveOptionsListener implements ActionListener {
+
+class saveOptionsDialog{
 
 	JDialog jw;
 	JFrame jf;
@@ -1531,7 +1532,7 @@ class saveOptionsListener implements ActionListener {
 		this.jf = jf;
 		jpn = jarn.jrnlPane;
 		jp = jpn.jpages;
-		jw = new JDialog(jf, "Save Options", false);
+		jw = new JDialog(jf, Jarnal.trans("Save Options"), false);
 		jw.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		Container cp = jw.getContentPane();
 		cp.setLayout(new GridBagLayout());
@@ -1541,56 +1542,73 @@ class saveOptionsListener implements ActionListener {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		jcb1 = new JCheckBox("Save Self Executing");
-		jcb1.addActionListener(this);
+                String action = "Save Self Executing";
+		jcb1 = new JCheckBox(Jarnal.trans(action));
+		jcb1.addActionListener(new saveOptionsListener(action));
 		cp.add(jcb1, c);	
 		c.gridy++;
-		jcb2 = new JCheckBox("Save Background With File");
-		jcb2.addActionListener(this);
+                action = "Save Background With File";
+		jcb2 = new JCheckBox(Jarnal.trans(action));
+		jcb2.addActionListener(new saveOptionsListener(action));
 		cp.add(jcb2, c);
 		c.gridy++;
-		jcb3 = new JCheckBox("Portable Backgrounds");
-		jcb3.addActionListener(this);
+                action = "Portable Backgrounds";
+		jcb3 = new JCheckBox(Jarnal.trans(action));
+		jcb3.addActionListener(new saveOptionsListener(action));
 		cp.add(jcb3, c);	
 		c.gridy++;
-		jcb6 = new JCheckBox("Record");
-		jcb6.addActionListener(this);
+                action = "Record";
+		jcb6 = new JCheckBox(Jarnal.trans(action));
+		jcb6.addActionListener(new saveOptionsListener(action));
 		cp.add(jcb6, c);	
 		c.gridy++;
-		jcb4 = new JCheckBox("Save On Exit");
-		jcb4.addActionListener(this);
+                action = "Save On Exit";
+		jcb4 = new JCheckBox(Jarnal.trans(action));
+		jcb4.addActionListener(new saveOptionsListener(action));
 		cp.add(jcb4, c);
 		c.gridy++;
-		jcb5 = new JCheckBox("Save User Info");
-		jcb5.addActionListener(this);
+                action = "Save User Info";
+		jcb5 = new JCheckBox(Jarnal.trans(action));
+		jcb5.addActionListener(new saveOptionsListener(action));
 		cp.add(jcb5, c);
 		c.gridy++;
-		JButton item = new JButton("Exit This Dialog");
-		item.addActionListener(this);
+                action = "Exit This Dialog";
+		JButton item = new JButton(Jarnal.trans(action));
+		item.addActionListener(new saveOptionsListener(action));
 		cp.add(item, c);
 		c.gridy++;
-		item = new JButton("Send As Email");
-		item.addActionListener(this);
+                action = "Send As Email";
+		item = new JButton(Jarnal.trans(action));
+		item.addActionListener(new saveOptionsListener(action));
 		cp.add(item,c);
 		if(!jarn.isApplet){
 			c.gridy++;
-			item = new JButton("Save");
-			item.addActionListener(this);
+                        action = "Save";
+			item = new JButton(Jarnal.trans(action));
+			item.addActionListener(new saveOptionsListener(action));
 			cp.add(item, c);
 			c.gridy++;
-			item = new JButton("Save As");
-			item.addActionListener(this);
+                        action = "Save As";
+			item = new JButton(Jarnal.trans(action));
+			item.addActionListener(new saveOptionsListener(action));
 			cp.add(item, c);
 		}
 		setDialog();
             	jw.setSize(new Dimension(240, 280));
 		Jarnbox.setCenter(jf, jw);
             	jw.setVisible(true);
-		jw.addWindowListener(new dialogClosing(this, "Exit This Dialog"));
+                action = "Exit This Dialog";
+		jw.addWindowListener(new dialogClosing(new saveOptionsListener(action), action));
 	}
-		
-	public void actionPerformed(ActionEvent e){
-		String action = e.getActionCommand();
+
+        private class saveOptionsListener implements ActionListener {
+            private String action;
+
+            public saveOptionsListener(String action){
+                this.action = action;
+            }
+
+            public void actionPerformed(ActionEvent e){
 		System.out.println(action);
 		boolean reset = true;
 		if(action.startsWith("Exit")) {
@@ -1605,10 +1623,10 @@ class saveOptionsListener implements ActionListener {
 		}
 		jpn.doAction(action);
 		if(reset) setDialog();
-		else if(thenExit) jpn.doAction("Exit");				
-	}
+		else if(thenExit) jpn.doAction("Exit");	
+            }
+        }
 }
-
 class overlayDialogListener implements ActionListener {
 
 	JDialog jw;

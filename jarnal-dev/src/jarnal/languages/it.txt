@@ -196,3 +196,18 @@ Documentation===Documentazione...===
 Memory Errors===Errori della memoria...===
 Hot Keys===Scorciatoie...===
 About===Informazioni su Jarnal===
+
+# Save Options dialog
+Save Options=== ===
+Save Self Executing=== ===
+Save Background With File=== ===
+Portable Backgrounds=== ===
+Record=== ===
+Save On Exit=== ===
+Save User Info=== ===
+Exit This Dialog=== ===
+Send As Email=== ===
+Save=== ===
+Save As=== ===
+
+# EOF

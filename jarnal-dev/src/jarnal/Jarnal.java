@@ -5552,7 +5552,7 @@ System.out.println(target);
 		return;
 	    }
 
-	    if(action.equals("Save Options") || action.equals("Save With Options")) (new saveOptionsListener()).showDialog(gJrnlFrame, jarn);
+	    if(action.equals("Save Options") || action.equals("Save With Options")) (new saveOptionsDialog()).showDialog(gJrnlFrame, jarn);
 
 	    if(action.equals("Network Save Options")){
 		netSaveDialog(null, null);
@@ -6018,7 +6018,7 @@ System.out.println(target);
 		if(fname.equals("") && noDialog) return;
 		if(fname.equals("")){
 			//doAction("Save With Options");
-			saveOptionsListener fooster = new saveOptionsListener();
+			saveOptionsDialog fooster = new saveOptionsDialog();
 			fooster.showDialog(gJrnlFrame, jarn);
 			if(thenExit) fooster.setExit();
 			return;
