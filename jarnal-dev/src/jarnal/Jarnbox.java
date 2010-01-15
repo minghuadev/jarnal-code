@@ -1544,53 +1544,53 @@ class saveOptionsDialog{
 		c.fill = GridBagConstraints.HORIZONTAL;
                 String action = "Save Self Executing";
 		jcb1 = new JCheckBox(Jarnal.trans(action));
-		jcb1.addActionListener(new saveOptionsListener(action));
+		jcb1.addActionListener(new saveOptionsDialogListener(action));
 		cp.add(jcb1, c);	
 		c.gridy++;
                 action = "Save Background With File";
 		jcb2 = new JCheckBox(Jarnal.trans(action));
-		jcb2.addActionListener(new saveOptionsListener(action));
+		jcb2.addActionListener(new saveOptionsDialogListener(action));
 		cp.add(jcb2, c);
 		c.gridy++;
                 action = "Portable Backgrounds";
 		jcb3 = new JCheckBox(Jarnal.trans(action));
-		jcb3.addActionListener(new saveOptionsListener(action));
+		jcb3.addActionListener(new saveOptionsDialogListener(action));
 		cp.add(jcb3, c);	
 		c.gridy++;
                 action = "Record";
 		jcb6 = new JCheckBox(Jarnal.trans(action));
-		jcb6.addActionListener(new saveOptionsListener(action));
+		jcb6.addActionListener(new saveOptionsDialogListener(action));
 		cp.add(jcb6, c);	
 		c.gridy++;
                 action = "Save On Exit";
 		jcb4 = new JCheckBox(Jarnal.trans(action));
-		jcb4.addActionListener(new saveOptionsListener(action));
+		jcb4.addActionListener(new saveOptionsDialogListener(action));
 		cp.add(jcb4, c);
 		c.gridy++;
                 action = "Save User Info";
 		jcb5 = new JCheckBox(Jarnal.trans(action));
-		jcb5.addActionListener(new saveOptionsListener(action));
+		jcb5.addActionListener(new saveOptionsDialogListener(action));
 		cp.add(jcb5, c);
 		c.gridy++;
                 action = "Exit This Dialog";
 		JButton item = new JButton(Jarnal.trans(action));
-		item.addActionListener(new saveOptionsListener(action));
+		item.addActionListener(new saveOptionsDialogListener(action));
 		cp.add(item, c);
 		c.gridy++;
                 action = "Send As Email";
 		item = new JButton(Jarnal.trans(action));
-		item.addActionListener(new saveOptionsListener(action));
+		item.addActionListener(new saveOptionsDialogListener(action));
 		cp.add(item,c);
 		if(!jarn.isApplet){
 			c.gridy++;
                         action = "Save";
 			item = new JButton(Jarnal.trans(action));
-			item.addActionListener(new saveOptionsListener(action));
+			item.addActionListener(new saveOptionsDialogListener(action));
 			cp.add(item, c);
 			c.gridy++;
                         action = "Save As";
 			item = new JButton(Jarnal.trans(action));
-			item.addActionListener(new saveOptionsListener(action));
+			item.addActionListener(new saveOptionsDialogListener(action));
 			cp.add(item, c);
 		}
 		setDialog();
@@ -1598,13 +1598,13 @@ class saveOptionsDialog{
 		Jarnbox.setCenter(jf, jw);
             	jw.setVisible(true);
                 action = "Exit This Dialog";
-		jw.addWindowListener(new dialogClosing(new saveOptionsListener(action), action));
+		jw.addWindowListener(new dialogClosing(new saveOptionsDialogListener(action), action));
 	}
 
-        private class saveOptionsListener implements ActionListener {
+        private class saveOptionsDialogListener implements ActionListener {
             private String action;
 
-            public saveOptionsListener(String action){
+            public saveOptionsDialogListener(String action){
                 this.action = action;
             }
 
@@ -1627,17 +1627,18 @@ class saveOptionsDialog{
             }
         }
 }
-class overlayDialogListener implements ActionListener {
+
+class overlayDialog {
 
 	JDialog jw;
 	JFrame jf;
-	JComboBox combo1;
-	JComboBox combo2;
+	JComboBox overlayCombo;
+	JComboBox outlineCombo;
 	SpinnerNumberModel model1;
 	SpinnerNumberModel model2;
 	SpinnerNumberModel model3;
 	SpinnerNumberModel model4;
-	Jarnal jarn;
+        Jarnal jarn;
 	Jpages jp;
 	Jarnal.JrnlPane jpn;
 	boolean lockgui = false;
@@ -1649,23 +1650,23 @@ class overlayDialogListener implements ActionListener {
 		String a = jo.getParm(str, "stroke-width=");
 		if(a != null) model2.setValue(new Double(Integer.parseInt(a, 10))); 
 		a = jo.getParm(str, "fill=");
-		if(a.equals("white")) combo1.setSelectedIndex(0); 
-		if(a.equals("yellow")) combo1.setSelectedIndex(1); 
-		if(a.equals("pink")) combo1.setSelectedIndex(2); 
-		if(a.equals("orange")) combo1.setSelectedIndex(3); 
-		if(a.equals("blue")) combo1.setSelectedIndex(4); 
-		if(a.equals("green")) combo1.setSelectedIndex(5); 	
+		if(a.equals("white")) overlayCombo.setSelectedIndex(0);
+		if(a.equals("yellow")) overlayCombo.setSelectedIndex(1);
+		if(a.equals("pink")) overlayCombo.setSelectedIndex(2);
+		if(a.equals("orange")) overlayCombo.setSelectedIndex(3);
+		if(a.equals("blue")) overlayCombo.setSelectedIndex(4);
+		if(a.equals("green")) overlayCombo.setSelectedIndex(5);
 		a = jo.getParm(str, "stroke=");
-		if(a.equals("black")) combo2.setSelectedIndex(0);
-		if(a.equals("blue")) combo2.setSelectedIndex(1);
-		if(a.equals("green")) combo2.setSelectedIndex(2);
-		if(a.equals("gray")) combo2.setSelectedIndex(3);
-		if(a.equals("magenta")) combo2.setSelectedIndex(4);
-		if(a.equals("pink")) combo2.setSelectedIndex(5);
-		if(a.equals("orange")) combo2.setSelectedIndex(6);
-		if(a.equals("red")) combo2.setSelectedIndex(7);
-		if(a.equals("white")) combo2.setSelectedIndex(8);
-		if(a.equals("yellow")) combo2.setSelectedIndex(9);
+		if(a.equals("black")) outlineCombo.setSelectedIndex(0);
+		if(a.equals("blue")) outlineCombo.setSelectedIndex(1);
+		if(a.equals("green")) outlineCombo.setSelectedIndex(2);
+		if(a.equals("gray")) outlineCombo.setSelectedIndex(3);
+		if(a.equals("magenta")) outlineCombo.setSelectedIndex(4);
+		if(a.equals("pink")) outlineCombo.setSelectedIndex(5);
+		if(a.equals("orange")) outlineCombo.setSelectedIndex(6);
+		if(a.equals("red")) outlineCombo.setSelectedIndex(7);
+		if(a.equals("white")) outlineCombo.setSelectedIndex(8);
+		if(a.equals("yellow")) outlineCombo.setSelectedIndex(9);
 		a = jo.getParm(str, "fill-opacity=");
 		if(a != null) {
 			float fo = Float.parseFloat(a);
@@ -1704,147 +1705,316 @@ class overlayDialogListener implements ActionListener {
 		this.jf = jf;
 		jpn = jarn.jrnlPane;
 		jp = jpn.jpages;
-		jw = new JDialog(jf, "Overlay", false);
+		jw = new JDialog(jf, Jarnal.trans("Overlay"), false);
 		jw.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+
 		Container cp = jw.getContentPane();
 		cp.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		c.weightx = 0.5;
-		c.gridwidth = 1;
-		c.gridx = 0;
-		c.gridy = 0;
-		JButton item = new JButton("Undo");
-		item.addActionListener(this);
-		cp.add(item, c); 
-		c.gridx = 1;
-		c.weightx = 0;
-		item = new JButton("Redo");
-		item.addActionListener(this);
-		cp.add(item, c);
-		c.gridy++;
-		c.gridx = 0;
-		c.gridwidth = 2;
-		item = new JButton("Update");
-		item.addActionListener(this);
-		cp.add(item, c);
-		c.gridy++;
+                cp.setName("cp");
+		GridBagConstraints gridBagConstraints;
+
+		String action = "Undo";
+		JButton button = new JButton(Jarnal.trans(action));
+		button.addActionListener(new overlayDialogListener(action));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 0;
+		cp.add(button, gridBagConstraints);
+		
+		action = "Redo";
+		button = new JButton(Jarnal.trans(action));
+		button.addActionListener(new overlayDialogListener(action));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 0;
+		cp.add(button, gridBagConstraints);
+		
+                action = "Update";
+		button = new JButton(Jarnal.trans(action));
+		button.addActionListener(new overlayDialogListener(action));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.gridwidth = 3;
+		cp.add(button, gridBagConstraints);
+
 		JLabel label = new JLabel(" ");
-		cp.add(label, c);
-		c.gridy++;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		String sels1[] = {"white", "yellow", "pink", "orange", "blue", "green"};
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.gridwidth = 3;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		cp.add(label, gridBagConstraints);
+
+		label = new JLabel(Jarnal.trans("Overlay"));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 3;
+		gridBagConstraints.gridwidth = 3;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		cp.add(label, gridBagConstraints);
+
+		label = new JLabel(Jarnal.trans("Color"));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 4;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		cp.add(label, gridBagConstraints);
+		
+		String sels1[] = {"white","yellow","pink","orange","blue","green"};
 		JLabel jmi[] = new JLabel[6];
-			for(int ii = 0; ii < 6; ii++) jmi[ii] = new JLabel(sels1[ii] + " overlay", new colorIcon(sels1[ii]), JLabel.CENTER);	
-		combo1 = new JComboBox(jmi); 
-		combo1.setRenderer(new labelCellRenderer());
-		combo1.addActionListener(this);
-	    	cp.add(combo1, c);
-		c.gridy++;
-		c.gridwidth = 1;
+                for(int ii = 0; ii < 6; ii++)
+                    jmi[ii] = new JLabel(Jarnal.trans(sels1[ii]),
+			    new colorIcon(sels1[ii]),JLabel.CENTER);
+		overlayCombo = new JComboBox(jmi);
+		overlayCombo.setName("overlayCombo");
+		overlayCombo.setRenderer(new labelCellRenderer());
+		overlayCombo.addActionListener(
+			new overlayDialogListener("change overlay"));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 4;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		cp.add(overlayCombo, gridBagConstraints);
+
+		label = new JLabel(Jarnal.trans("Transparency"));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 5;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		cp.add(label, gridBagConstraints);
+
+		label = new JLabel(" ");
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 5;
+		cp.add(label, gridBagConstraints);
+
 		model1 = new SpinnerNumberModel(1, 0, 100.0, 1.0);
 		JSpinner spinner = new JSpinner(model1);
-		cp.add(spinner, c);
-		c.gridx = 1;
-		c.weightx = 0;
-		item = new JButton("Fade Overlay");
-		item.addActionListener(this);
-		cp.add(item, c);
-		c.gridwidth = 2;
-		c.gridx = 0;
-		c.gridy++;
-		label = new JLabel(" ");
-		cp.add(label, c);
-		c.gridy++;
-		String sels2[] = {"black", "blue", "green", "gray", "magenta", "pink", "orange", "red", "white", "yellow"};
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 5;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		cp.add(spinner, gridBagConstraints);
+
+		action = "Refresh Overlay";
+		button = new JButton(Jarnal.trans(action));
+		button.addActionListener(new overlayDialogListener(action));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 6;
+		gridBagConstraints.gridwidth = 3;
+		cp.add(button, gridBagConstraints);
+		
+                label = new JLabel(" ");
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 7;
+		gridBagConstraints.gridwidth = 3;gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+		cp.add(label, gridBagConstraints);
+
+		label = new JLabel(Jarnal.trans("Outline"));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 8;
+		gridBagConstraints.gridwidth = 3;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		cp.add(label, gridBagConstraints);
+
+		label = new JLabel(Jarnal.trans("Color"));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 9;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		cp.add(label, gridBagConstraints);
+
+		String sels2[] = {"black","blue","green","gray","magenta",
+			"pink","orange","red","white","yellow"};
 		jmi = new JLabel[10];
-			for(int ii = 0; ii < 10; ii++) jmi[ii] = new JLabel(sels2[ii] + " outline", new colorIcon(sels2[ii]), JLabel.CENTER);
-		combo2 = new JComboBox(jmi); 
-		combo2.setRenderer(new labelCellRenderer());
-		combo2.addActionListener(this);
-	    	cp.add(combo2, c);
-		c.gridy++;
-		c.gridwidth = 1;
+                for(int ii = 0; ii < 10; ii++)
+                    jmi[ii] = new JLabel(Jarnal.trans(sels2[ii]),
+			    new colorIcon(sels2[ii]), JLabel.CENTER);
+		outlineCombo = new JComboBox(jmi);
+		outlineCombo.setName("outlineCombo");
+		outlineCombo.setRenderer(new labelCellRenderer());
+		outlineCombo.addActionListener(
+			new overlayDialogListener("change outline"));
+	    	gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 9;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		cp.add(outlineCombo, gridBagConstraints);
+
+		label = new JLabel(Jarnal.trans("Thickness"));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 10;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		cp.add(label, gridBagConstraints);
+
 		model2 = new SpinnerNumberModel(1, 0, 20.0, 1.0);
 		spinner = new JSpinner(model2);
-		cp.add(spinner, c);
-		c.gridx = 1;
-		c.weightx = 0;
-		item = new JButton("Thickness");
-		item.addActionListener(this);
-		cp.add(item, c);
-		c.gridy++;
-		c.gridx = 0;
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 10;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		cp.add(spinner, gridBagConstraints);
+
+                action = "Refresh Outline";
+		button = new JButton(Jarnal.trans(action));
+		button.addActionListener(new overlayDialogListener(action));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 11;
+		gridBagConstraints.gridwidth = 3;
+		cp.add(button, gridBagConstraints);
+
 		label = new JLabel(" ");
-		cp.add(label, c);
-		c.gridy++;
-		model3=new SpinnerNumberModel(0, 0, 100, 1);
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 12;
+		gridBagConstraints.gridwidth = 3;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+		cp.add(label, gridBagConstraints);
+
+		label = new JLabel(Jarnal.trans("Roundness"));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 13;
+		gridBagConstraints.gridwidth = 3;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		cp.add(label, gridBagConstraints);
+
+		label = new JLabel("x");
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 14;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		cp.add(label, gridBagConstraints);
+
+		model3 = new SpinnerNumberModel(0, 0, 100, 1);
 		spinner = new JSpinner(model3);
-		cp.add(spinner, c);
-		c.gridx = 1;
-		c.weightx = 0;
-		//c.gridheight = 2;
-		item = new JButton("Equalize");
-		item.addActionListener(this);
-		cp.add(item, c);
-		c.gridy++;
-		item = new JButton("Roundness");
-		item.addActionListener(this);
-		cp.add(item, c);
-		c.gridheight = 1;
-		c.gridx = 0;
-		//c.gridy++;
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 14;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		cp.add(spinner, gridBagConstraints);
+
+		label = new JLabel("y");
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 15;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		cp.add(label, gridBagConstraints);
+
 		model4 = new SpinnerNumberModel(0, 0, 100, 1);
 		spinner = new JSpinner(model4);
-		cp.add(spinner, c);
-		c.gridwidth = 2;
-		c.gridx = 0;
-		c.gridy++;
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 15;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		cp.add(spinner, gridBagConstraints);
+
+                action = "Equalize";
+		button = new JButton(Jarnal.trans(action));
+		button.addActionListener(new overlayDialogListener(action));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 16;
+		gridBagConstraints.gridwidth = 3;
+		cp.add(button, gridBagConstraints);
+
+                action = "Refresh Roundness";
+		button = new JButton(Jarnal.trans(action));
+		button.addActionListener(new overlayDialogListener(action));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 17;
+		gridBagConstraints.gridwidth = 3;
+		cp.add(button, gridBagConstraints);
+		
 		label = new JLabel(" ");
-		cp.add(label, c);
-		c.gridy++;
-		c.fill = GridBagConstraints.NONE;
-		item = new JButton("Make Square");
-		item.addActionListener(this);
-		cp.add(item, c);
-		c.gridy++;
-		item = new JButton("Insert Overlay");
-		item.addActionListener(this);
-		cp.add(item, c);
-		c.gridy++;
-		item = new JButton("Done");
-		item.addActionListener(this);
-		cp.add(item, c);
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 18;
+		gridBagConstraints.gridwidth = 3;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+		cp.add(label, gridBagConstraints);
+
+                action = "Make Square";
+		button = new JButton(Jarnal.trans(action));
+		button.addActionListener(new overlayDialogListener(action));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 19;
+		gridBagConstraints.gridwidth = 3;
+		cp.add(button, gridBagConstraints);
+
+                action = "Insert Overlay";
+		button = new JButton(Jarnal.trans(action));
+		button.addActionListener(new overlayDialogListener(action));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 20;
+		gridBagConstraints.gridwidth = 3;
+		cp.add(button, gridBagConstraints);
+
+                action = "Done";
+		button = new JButton(Jarnal.trans(action));
+		button.addActionListener(new overlayDialogListener(action));
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 21;
+		gridBagConstraints.gridwidth = 3;
+		cp.add(button, gridBagConstraints);
+
 		setDialog();		
-            	jw.setSize(new Dimension(240, 420));
+            	jw.setSize(new Dimension(300, 530));
 		Jarnbox.setCenter(jf, jw);
             	jw.setVisible(true);
-		jw.addWindowListener(new dialogClosing(this, "Done"));
+		jw.addWindowListener(new dialogClosing(new overlayDialogListener(action), Jarnal.trans(action)));
 	}
-		
-	public void actionPerformed(ActionEvent e){
+
+        private class overlayDialogListener implements ActionListener {
+            private String action;
+
+            public overlayDialogListener(String action){
+                this.action = action;
+            }
+
+            public void actionPerformed(ActionEvent e){
 		if(lockgui) return;
-		String action = e.getActionCommand();
-		System.out.println(action);
-		if(action.equals("comboBoxChanged")){
+		if(action.endsWith(" overlay")){
+			System.out.println("overlayComboChanged");
 			JComboBox cb = (JComboBox)e.getSource();
-			try{
-        			action = (String)cb.getSelectedItem();
-			}
-			catch(Exception ex){
-				JLabel jl = (JLabel)cb.getSelectedItem();
-				action = jl.getText();
-			}
-			System.out.println(action);
+			action = ((colorIcon)(((JLabel)overlayCombo.
+				getSelectedItem()).getIcon())).getIconColor();
+			action += " overlay";
 		}
+		else if(action.endsWith(" outline")){
+			System.out.println("outlineComboChanged");
+			JComboBox cb = (JComboBox)e.getSource();
+			action = ((colorIcon)(((JLabel)outlineCombo.
+				getSelectedItem()).getIcon())).getIconColor();
+			action += " outline";
+		}
+		System.out.println(action);
 		if(action.equals("Done")) jw.setVisible(false);
 		else if(action.equals("Update")) setDialog();
-		else if(action.equals("Fade Overlay")){
+		else if(action.equals("Refresh Overlay")){
 			jpn.defaultOverlay = jp.setOverlayStyle(jpn.defaultOverlay, -1, -1, null, null, -1, model1.getNumber().intValue(), -1);
 			jarn.dirty = true;
 			jp.invalidateGraphics();
 			jpn.doAction("Redraw Page");
 		}
-		else if(action.equals("Thickness")){
+		else if(action.equals("Refresh Outline")){
 			jpn.defaultOverlay = jp.setOverlayStyle(jpn.defaultOverlay, -1, -1, null, null, model2.getNumber().intValue(), -1, -1);
 			jarn.dirty = true;
 			jp.invalidateGraphics();
@@ -1853,7 +2023,7 @@ class overlayDialogListener implements ActionListener {
 		else if(action.equals("Equalize")){
 			model4.setValue(model3.getNumber());
 		}
-		else if(action.equals("Roundness")){
+		else if(action.equals("Refresh Roundness")){
 			jpn.defaultOverlay = jp.setOverlayStyle(jpn.defaultOverlay, model3.getNumber().intValue(), model4.getNumber().intValue(), null, null, -1, -1, -1);
 			jarn.dirty = true;
 			jp.invalidateGraphics();
@@ -1864,11 +2034,11 @@ class overlayDialogListener implements ActionListener {
 			jarn.dirty = true;
 			jp.invalidateGraphics();
 			jpn.doAction("Redraw Page");
-		}			 
+		}
 		else jpn.doAction(action);
-	}
+            }
+        }
 }
-
 class textDialogListener implements ActionListener {
 
 	JDialog jw;

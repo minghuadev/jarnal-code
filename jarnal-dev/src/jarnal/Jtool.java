@@ -669,6 +669,7 @@ class colorIcon implements Icon {
 
 	public int getIconHeight(){return height;}
 	public int getIconWidth(){return width;}
+	public String getIconColor(){return col;}
 	
    	public void paintIcon(Component c, Graphics g, int x, int y) {
 		Color cc = g.getColor();

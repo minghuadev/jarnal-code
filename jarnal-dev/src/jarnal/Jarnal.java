@@ -1512,7 +1512,7 @@ System.out.println(target);
 	JMenu overlay = new JMenu(trans("Overlay"));
 	overlay.add(bmi("Insert Overlay"));
 	overlay.addSeparator();
-	overlay.add(bmi("Fade Overlay"));
+	overlay.add(bmi("Refresh Overlay"));
 	JMenu ocolor = new JMenu(trans("Overlay Color"));
 	ocolor.add(bmi("white overlay"));
 	ocolor.add(bmi("yellow overlay"));
@@ -6602,7 +6602,7 @@ System.out.println(target);
 		else action = "Modify Selection";
 	   }
 
-	   if(action.equals("Overlay Style")) (new overlayDialogListener()).showDialog(gJrnlFrame, jarn);
+	   if(action.equals("Overlay Style")) (new overlayDialog()).showDialog(gJrnlFrame, jarn);
 
 	   boolean overlayOp = false;
 	   if(action.endsWith(" overlay")){
@@ -6613,9 +6613,9 @@ System.out.println(target);
 			defaultOverlay = jpages.setOverlayColor(defaultOverlay, ocol);
 		}
 	    }
-	    if(action.equals("Fade Overlay")){
+	    if(action.equals("Refresh Overlay")){
 		overlayOp = true;
-		Number test = (new Jarnbox(gJrnlFrame, "Fade Overlay")).getInt(jpages.getOverlayFade(defaultOverlay), 100);
+		Number test = (new Jarnbox(gJrnlFrame, "Refresh Overlay")).getInt(jpages.getOverlayFade(defaultOverlay), 100);
 		if(test != null) defaultOverlay = jpages.setOverlayStyle(defaultOverlay, -1, -1, null, null, -1, test.intValue(), -1);
 	    }
 	    if(action.equals("Overlay Outline Thickness")){

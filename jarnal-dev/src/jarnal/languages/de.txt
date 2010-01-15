@@ -212,26 +212,31 @@ Send As Email===Als E-Mail versenden===
 Save===Speichern===
 Save As===Speichern unter===
 
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
+# Overlay dialog
+Overlay===Überdeckung===
+Update=== ===
+Overlay===Überdeckung===
+Refresh Overlay===Überdeckung aktualisieren===
+Outline===Umriss===
+Refresh Outline===Umriss aktualisieren===
+Equalize===Angleichen===
+Roundness===Rundheit===
+Refresh Roundness===Rundheit aktualisieren===
+Make Square===Qadratisch machen===
+Insert Overlay===Überdeckung einfügen===
+Done===Fertig===
+
+# Colors
+white===weiß===
+yellow===gelb===
+pink===pink===
+orange===orange===
+blue===blau===
+green===grün===
+black===schwarz===
+gray===grau===
+magenta===magenta===
+red===rot===
 === ===
 === ===
 === ===
