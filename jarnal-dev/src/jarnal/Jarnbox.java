@@ -850,7 +850,7 @@ class paperDialogListener implements ActionListener {
 		c.gridwidth = 2;
 		c.gridx = 0;
 		c.gridy++;
-		String sels4[] = {"Normal Size", "Index Card", "Size"};	
+		String sels4[] = {"Normal Size","Index Card","Size","A4","US Letter"};
 		combo4 = new JComboBox(sels4); 
 		combo4.setSelectedIndex(2);
 		combo4.addActionListener(this);

@@ -216,8 +216,11 @@ Save As===Speichern unter===
 Overlay===Überdeckung===
 Update=== ===
 Overlay===Überdeckung===
+Color===Farbe===
+Transparency===Transparenz===
 Refresh Overlay===Überdeckung aktualisieren===
 Outline===Umriss===
+Thickness===Dicke===
 Refresh Outline===Umriss aktualisieren===
 Equalize===Angleichen===
 Roundness===Rundheit===

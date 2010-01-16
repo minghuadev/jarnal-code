@@ -6802,6 +6802,24 @@ System.out.println(target);
 		resize = true;
 		dirty = true;
 	    }
+	    if(action.equals("A4")) {
+		jpages.setStartMark();
+		jpages.setHeight(11.69f);
+		jpages.setWidth(8.27f);
+		jpages.setLines(25);
+		jpages.setEndMark();
+		resize = true;
+		dirty = true;
+	    }
+	    if(action.equals("US Letter")) {
+		jpages.setStartMark();
+		jpages.setHeight(10.98f);
+		jpages.setWidth(8.50f);
+		jpages.setLines(25);
+		jpages.setEndMark();
+		resize = true;
+		dirty = true;
+	    }
 	    if(action.equals("Fit to Background")){
 		jpages.setSizeToBg();
 		resize = true;
