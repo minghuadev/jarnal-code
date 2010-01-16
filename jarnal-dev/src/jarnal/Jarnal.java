@@ -5552,7 +5552,7 @@ System.out.println(target);
 		return;
 	    }
 
-	    if(action.equals("Save Options") || action.equals("Save With Options")) (new saveOptionsDialog()).showDialog(gJrnlFrame, jarn);
+	    if(action.equals("Save Options") || action.equals("Save With Options")) (new saveOptionsDialogListener()).showDialog(gJrnlFrame, jarn);
 
 	    if(action.equals("Network Save Options")){
 		netSaveDialog(null, null);
@@ -6018,7 +6018,7 @@ System.out.println(target);
 		if(fname.equals("") && noDialog) return;
 		if(fname.equals("")){
 			//doAction("Save With Options");
-			saveOptionsDialog fooster = new saveOptionsDialog();
+			saveOptionsDialogListener fooster = new saveOptionsDialogListener();
 			fooster.showDialog(gJrnlFrame, jarn);
 			if(thenExit) fooster.setExit();
 			return;
@@ -6602,7 +6602,7 @@ System.out.println(target);
 		else action = "Modify Selection";
 	   }
 
-	   if(action.equals("Overlay Style")) (new overlayDialog()).showDialog(gJrnlFrame, jarn);
+	   if(action.equals("Overlay Style")) (new overlayDialogListener()).showDialog(gJrnlFrame, jarn);
 
 	   boolean overlayOp = false;
 	   if(action.endsWith(" overlay")){

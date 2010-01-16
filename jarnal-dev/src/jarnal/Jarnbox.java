@@ -1005,7 +1005,6 @@ class paperDialogListener implements ActionListener {
 		
 	public void actionPerformed(ActionEvent e){
 		String action = e.getActionCommand();
-		//System.out.println(action);
 		if(action.equals("comboBoxChanged")){
 			JComboBox cb = (JComboBox)e.getSource();
 			try{
@@ -1017,6 +1016,7 @@ class paperDialogListener implements ActionListener {
 			}
 			//System.out.println(action);
 		}
+		else System.out.println(action);
 		if(action.equals("white") || action.equals("yellow") || action.equals("pink") || action.equals("orange") || action.equals("blue") || action.equals("green")) jpn.doAction(action + " paper");
 		else if(action.endsWith("Lines")){
 			if(action.startsWith("Set")){
@@ -1499,7 +1499,8 @@ class printOptionsListener implements ActionListener {
 }
 
 
-class saveOptionsDialog{
+
+class saveOptionsDialogListener	implements ActionListener {
 
 	JDialog jw;
 	JFrame jf;
@@ -1544,53 +1545,63 @@ class saveOptionsDialog{
 		c.fill = GridBagConstraints.HORIZONTAL;
                 String action = "Save Self Executing";
 		jcb1 = new JCheckBox(Jarnal.trans(action));
-		jcb1.addActionListener(new saveOptionsDialogListener(action));
+		jcb1.setActionCommand(action);
+		jcb1.addActionListener(this);
 		cp.add(jcb1, c);	
 		c.gridy++;
                 action = "Save Background With File";
 		jcb2 = new JCheckBox(Jarnal.trans(action));
-		jcb2.addActionListener(new saveOptionsDialogListener(action));
+		jcb2.setActionCommand(action);
+		jcb2.addActionListener(this);
 		cp.add(jcb2, c);
 		c.gridy++;
                 action = "Portable Backgrounds";
 		jcb3 = new JCheckBox(Jarnal.trans(action));
-		jcb3.addActionListener(new saveOptionsDialogListener(action));
+		jcb3.setActionCommand(action);
+		jcb3.addActionListener(this);
 		cp.add(jcb3, c);	
 		c.gridy++;
                 action = "Record";
 		jcb6 = new JCheckBox(Jarnal.trans(action));
-		jcb6.addActionListener(new saveOptionsDialogListener(action));
+		jcb6.setActionCommand(action);
+		jcb6.addActionListener(this);
 		cp.add(jcb6, c);	
 		c.gridy++;
                 action = "Save On Exit";
 		jcb4 = new JCheckBox(Jarnal.trans(action));
-		jcb4.addActionListener(new saveOptionsDialogListener(action));
+		jcb4.setActionCommand(action);
+		jcb4.addActionListener(this);
 		cp.add(jcb4, c);
 		c.gridy++;
                 action = "Save User Info";
 		jcb5 = new JCheckBox(Jarnal.trans(action));
-		jcb5.addActionListener(new saveOptionsDialogListener(action));
+		jcb5.setActionCommand(action);
+		jcb5.addActionListener(this);
 		cp.add(jcb5, c);
 		c.gridy++;
                 action = "Exit This Dialog";
 		JButton item = new JButton(Jarnal.trans(action));
-		item.addActionListener(new saveOptionsDialogListener(action));
+		item.setActionCommand(action);
+		item.addActionListener(this);
 		cp.add(item, c);
 		c.gridy++;
                 action = "Send As Email";
 		item = new JButton(Jarnal.trans(action));
-		item.addActionListener(new saveOptionsDialogListener(action));
+		item.setActionCommand(action);
+		item.addActionListener(this);
 		cp.add(item,c);
 		if(!jarn.isApplet){
 			c.gridy++;
                         action = "Save";
 			item = new JButton(Jarnal.trans(action));
-			item.addActionListener(new saveOptionsDialogListener(action));
+			item.setActionCommand(action);
+			item.addActionListener(this);
 			cp.add(item, c);
 			c.gridy++;
                         action = "Save As";
 			item = new JButton(Jarnal.trans(action));
-			item.addActionListener(new saveOptionsDialogListener(action));
+			item.setActionCommand(action);
+			item.addActionListener(this);
 			cp.add(item, c);
 		}
 		setDialog();
@@ -1598,17 +1609,11 @@ class saveOptionsDialog{
 		Jarnbox.setCenter(jf, jw);
             	jw.setVisible(true);
                 action = "Exit This Dialog";
-		jw.addWindowListener(new dialogClosing(new saveOptionsDialogListener(action), action));
+		jw.addWindowListener(new dialogClosing(this, action));
 	}
 
-        private class saveOptionsDialogListener implements ActionListener {
-            private String action;
-
-            public saveOptionsDialogListener(String action){
-                this.action = action;
-            }
-
-            public void actionPerformed(ActionEvent e){
+	public void actionPerformed(ActionEvent e){
+		String action = e.getActionCommand();
 		System.out.println(action);
 		boolean reset = true;
 		if(action.startsWith("Exit")) {
@@ -1623,12 +1628,11 @@ class saveOptionsDialog{
 		}
 		jpn.doAction(action);
 		if(reset) setDialog();
-		else if(thenExit) jpn.doAction("Exit");	
+		else if(thenExit) jpn.doAction("Exit");
             }
-        }
-}
 
-class overlayDialog {
+}
+class overlayDialogListener implements ActionListener {
 
 	JDialog jw;
 	JFrame jf;
@@ -1715,7 +1719,8 @@ class overlayDialog {
 
 		String action = "Undo";
 		JButton button = new JButton(Jarnal.trans(action));
-		button.addActionListener(new overlayDialogListener(action));
+		button.setActionCommand(action);
+		button.addActionListener(this);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 0;
@@ -1723,7 +1728,8 @@ class overlayDialog {
 		
 		action = "Redo";
 		button = new JButton(Jarnal.trans(action));
-		button.addActionListener(new overlayDialogListener(action));
+		button.setActionCommand(action);
+		button.addActionListener(this);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 2;
 		gridBagConstraints.gridy = 0;
@@ -1731,7 +1737,8 @@ class overlayDialog {
 		
                 action = "Update";
 		button = new JButton(Jarnal.trans(action));
-		button.addActionListener(new overlayDialogListener(action));
+		button.setActionCommand(action);
+		button.addActionListener(this);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 1;
@@ -1771,8 +1778,7 @@ class overlayDialog {
 		overlayCombo = new JComboBox(jmi);
 		overlayCombo.setName("overlayCombo");
 		overlayCombo.setRenderer(new labelCellRenderer());
-		overlayCombo.addActionListener(
-			new overlayDialogListener("change overlay"));
+		overlayCombo.addActionListener(this);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 2;
 		gridBagConstraints.gridy = 4;
@@ -1804,7 +1810,8 @@ class overlayDialog {
 
 		action = "Refresh Overlay";
 		button = new JButton(Jarnal.trans(action));
-		button.addActionListener(new overlayDialogListener(action));
+		button.setActionCommand(action);
+		button.addActionListener(this);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 6;
@@ -1843,8 +1850,7 @@ class overlayDialog {
 		outlineCombo = new JComboBox(jmi);
 		outlineCombo.setName("outlineCombo");
 		outlineCombo.setRenderer(new labelCellRenderer());
-		outlineCombo.addActionListener(
-			new overlayDialogListener("change outline"));
+		outlineCombo.addActionListener(this);
 	    	gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 2;
 		gridBagConstraints.gridy = 9;
@@ -1868,7 +1874,8 @@ class overlayDialog {
 
                 action = "Refresh Outline";
 		button = new JButton(Jarnal.trans(action));
-		button.addActionListener(new overlayDialogListener(action));
+		button.setActionCommand(action);
+		button.addActionListener(this);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 11;
@@ -1924,7 +1931,8 @@ class overlayDialog {
 
                 action = "Equalize";
 		button = new JButton(Jarnal.trans(action));
-		button.addActionListener(new overlayDialogListener(action));
+		button.setActionCommand(action);
+		button.addActionListener(this);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 16;
@@ -1933,7 +1941,8 @@ class overlayDialog {
 
                 action = "Refresh Roundness";
 		button = new JButton(Jarnal.trans(action));
-		button.addActionListener(new overlayDialogListener(action));
+		button.setActionCommand(action);
+		button.addActionListener(this);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 17;
@@ -1950,7 +1959,8 @@ class overlayDialog {
 
                 action = "Make Square";
 		button = new JButton(Jarnal.trans(action));
-		button.addActionListener(new overlayDialogListener(action));
+		button.setActionCommand(action);
+		button.addActionListener(this);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 19;
@@ -1959,7 +1969,8 @@ class overlayDialog {
 
                 action = "Insert Overlay";
 		button = new JButton(Jarnal.trans(action));
-		button.addActionListener(new overlayDialogListener(action));
+		button.setActionCommand(action);
+		button.addActionListener(this);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 20;
@@ -1968,7 +1979,8 @@ class overlayDialog {
 
                 action = "Done";
 		button = new JButton(Jarnal.trans(action));
-		button.addActionListener(new overlayDialogListener(action));
+		button.setActionCommand(action);
+		button.addActionListener(this);
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 21;
@@ -1979,33 +1991,22 @@ class overlayDialog {
             	jw.setSize(new Dimension(300, 530));
 		Jarnbox.setCenter(jf, jw);
             	jw.setVisible(true);
-		jw.addWindowListener(new dialogClosing(new overlayDialogListener(action), Jarnal.trans(action)));
+		jw.addWindowListener(new dialogClosing(this, action));
 	}
 
-        private class overlayDialogListener implements ActionListener {
-            private String action;
-
-            public overlayDialogListener(String action){
-                this.action = action;
-            }
-
-            public void actionPerformed(ActionEvent e){
+	public void actionPerformed(ActionEvent e){
 		if(lockgui) return;
-		if(action.endsWith(" overlay")){
-			System.out.println("overlayComboChanged");
-			JComboBox cb = (JComboBox)e.getSource();
-			action = ((colorIcon)(((JLabel)overlayCombo.
-				getSelectedItem()).getIcon())).getIconColor();
-			action += " overlay";
-		}
-		else if(action.endsWith(" outline")){
-			System.out.println("outlineComboChanged");
-			JComboBox cb = (JComboBox)e.getSource();
-			action = ((colorIcon)(((JLabel)outlineCombo.
-				getSelectedItem()).getIcon())).getIconColor();
-			action += " outline";
-		}
+		String action = e.getActionCommand();
 		System.out.println(action);
+		if(action.equals("comboBoxChanged")){
+			JComboBox cb = (JComboBox)e.getSource();
+			action = ((colorIcon)(((JLabel)cb.getSelectedItem()).getIcon())).getIconColor();
+			if(cb.getName()=="overlayCombo")
+				action += " overlay";
+			else if(cb.getName()=="outlineCombo")
+				action += " outline";
+			System.out.println(action);
+		}
 		if(action.equals("Done")) jw.setVisible(false);
 		else if(action.equals("Update")) setDialog();
 		else if(action.equals("Refresh Overlay")){
@@ -2037,7 +2038,7 @@ class overlayDialog {
 		}
 		else jpn.doAction(action);
             }
-        }
+
 }
 class textDialogListener implements ActionListener {
 
