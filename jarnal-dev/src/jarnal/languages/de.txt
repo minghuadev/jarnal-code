@@ -240,51 +240,53 @@ black===schwarz===
 gray===grau===
 magenta===magenta===
 red===rot===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
+
+# Paper dialog
+Lined===Liniert===
+Plain===Blank===
+Graph===Kariert===
+Ruled===Liniert mit Kopfzeile===
+Paper===Papier===
+color=== ===
+Thick Lines===Dicke Linien===
+Medium Lines===Mittlere  Linien===
+Thin Lines===Dünne Linien===
+Other Lines===Andere Linien===
+Set Lines===Linien aktualisieren===
+Normal Size===Normale Größe===
+Index Card===Karteikarte===
+A4===DIN A4===
+US Letter=== ===
+Size===Größe===
+Fit to Background===Dem Hintergrund anpassen===
+Toggle Landscape===Quer an/aus===
+Bottom Highlighter===Hintergrundtextmarker===
+opaque===deckend===
+translucent===durchscheinend===
+transparent===transparent===
+other===manuell===
+Copy Paper===Kopiere Papier===
+Absolute Scale=== ===
+Background===Hintergrund===
+Show===Anzeigen===
+Repeating===Auf folgenden Seiten===
+Fade===Verblassen===
+Page===Seite===
+Scale===Vergrößern===
+Fit Page Width===An Seitenbreite anpassen===
+Fit Page Height===An Seitenhöhe anpassen===
+Clockwise===Im Uhrzeigersinn===
+Counterclockwise===Gegen den Uhrzeigersinn===
+Upside Down===Kopfüber===
+Rotate===Drehen===
+Insert Text===Text einfügen===
+Information=== ===
+Portable===Portierbar===
+Save With File===Mit Datei abspeichern===
+Open===Öffnen===
+Remove===Entfernen===
+Apply Paper to All Pages===Papier auf alle Seiten anwenden===
+Apply to All with Background===Auf alle Seiten mit Hintergrund anwenden===
 === ===
 === ===
 === ===
