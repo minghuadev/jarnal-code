@@ -2193,8 +2193,7 @@ class textDialogListener implements ActionListener {
 		c.gridwidth = 1;
 		c.gridx = 0;
 		c.gridy = 0;
-		String action = "undo";
-		action = "Undo";
+		String action = "Undo";
 		JButton item = new JButton(Jarnal.trans(action));
 		item.setActionCommand(action);
 		item.addActionListener(this);
@@ -2409,7 +2408,7 @@ class selectionDialogListener implements ActionListener {
 		//String sels2[] = {"no change", "black", "blue", "green", "gray", "magenta", "orange", "pink", "red", "white", "yellow"};
 		jmi = new JLabel[11];
 		for(int ii = 0; ii < 11; ii++) {
-			jmi[ii] = new JLabel(sels1[ii] + " " + Jarnal.trans("highlighter"), new colorIcon(sels1[ii]), JLabel.CENTER);
+			jmi[ii] = new JLabel(Jarnal.trans(sels1[ii]) + " " + Jarnal.trans("highlighter"), new colorIcon(sels1[ii]), JLabel.CENTER);
 			jmi[ii].setName(sels1[ii] + " highlighter");
 		}
 		//for(int ii = 1; ii < sels2.length; ii++) sels2[ii] = sels2[ii] + " highlighter";

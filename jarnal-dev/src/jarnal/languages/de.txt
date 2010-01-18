@@ -149,7 +149,7 @@ Paper and Background===Papier und Hintergrund===
 Graph Paper===Kariertes Papier===
 Set Size===Größe einstellen===
 Background Screenshot===Screenshot als Hintergrund===
-Modify Selection===Stift manuell einstellen===
+Modify Selection===Auswahl modifzieren===
 Overlay Style===Überdeckungsstil===
 Overplakker
 
@@ -308,22 +308,35 @@ Entire Screen===Ganzer Bildschirm===
 Minimize for Screenshot===Fürs Aufnehmen Minimieren===
 Cancel===Abbrechen===
 Shoot===Aufnehmen===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
+
+# Selection Dialog
+Pen Width===Strichbreite===
+Arrow Weight===Pfeilgewicht===
+Highlighter Width===Textmarkerbreite===
+highlighter===Textmarker===
+no change===Keine Veränderung===
+No Change===Keine Veränderung===
+Translucent===Durchscheinend===
+Transparent=== ===
+Apply Current Pen===Aktive Stifteinstellung anwenden===
+
+# Text Style Dialog
+Text Style===Textstil===
+Bold Text===Fetter Text===
+Underline Text===Unterstrichener Text===
+Italic Text===Kursiver Text===
+Font=== ===
+Set Text Default===Text auf Standard setzen===
+Black Text===Schwarzer Text===
+Blue Text===Blauer Text===
+Green Text===Grüner Text===
+Gray Text===Grauer Text===
+Magenta Text=== ===
+Orange Text===Oranger Text===
+Pink Text===Pinker Text===
+Red Text===Roter Text===
+White Text===Weißer Text===
+Yellow Text===Gelber Text===
 === ===
 === ===
 === ===
