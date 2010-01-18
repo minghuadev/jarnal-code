@@ -14,6 +14,7 @@ import java.awt.datatransfer.*;
 import java.io.*;
 
 import jarnal.Jarnal;
+import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 
 public class Jarnbox {	
@@ -1401,7 +1402,7 @@ class screenShotListener implements ActionListener {
 		this.jf = jf;
 		jpn = jarn.jrnlPane;
 		jp = jpn.jpages;
-		jw = new JDialog(jf, title, false);
+		jw = new JDialog(jf, Jarnal.trans(title), false);
 		jw.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		Container cp = jw.getContentPane();
 		cp.setLayout(new GridBagLayout());
@@ -1412,27 +1413,41 @@ class screenShotListener implements ActionListener {
 		c.gridy = 0;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		String sels1[] = {"Image", "Background"};
-		combo1 = new JComboBox(sels1);
+		JLabel jmi1[] = new JLabel[sels1.length];
+		for (int ii = 0; ii < sels1.length; ii++) {
+			jmi1[ii] = new JLabel(Jarnal.trans(sels1[ii]));
+			jmi1[ii].setName(sels1[ii]);
+		}
+		combo1 = new JComboBox(jmi1);
+		combo1.setRenderer(new labelCellRenderer());
 		combo1.setSelectedIndex(0);
 		if(title.equals("Background Screenshot")) combo1.setSelectedIndex(1);
 		combo1.addActionListener(this);
 		cp.add(combo1, c);
 		c.gridy++;
-		jcb1 = new JCheckBox("Entire Screen");
+		String action = "Entire Screen";
+		jcb1 = new JCheckBox(Jarnal.trans(action));
+		jcb1.setActionCommand(action);
 		jcb1.addActionListener(this);
 		if(jarn.ascr) jcb1.setSelected(true);
 		cp.add(jcb1, c);	
 		c.gridy++;
-		jcb2 = new JCheckBox("Minimize for Screenshot");
+		action = "Minimize for Screenshot";
+		jcb2 = new JCheckBox(Jarnal.trans(action));
+		jcb2.setActionCommand(action);
 		jcb2.addActionListener(this);
 		if(jarn.mscr) jcb2.setSelected(true);
 		cp.add(jcb2, c);
 		c.gridy++;
-		JButton item = new JButton("Cancel");
+		action = "Cancel";
+		JButton item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
 		c.gridy++;
-		item = new JButton("Shoot");
+		action = "Shoot";
+		item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
             	jw.setSize(new Dimension(240, 180));
@@ -1448,8 +1463,11 @@ class screenShotListener implements ActionListener {
 		if(action.equals("Cancel")) jw.setVisible(false);
 		else if(action.equals("Shoot")){
 			jw.setVisible(false);
-			if(((String)combo1.getSelectedItem()).equals("Image")) jpn.doAction("Screenshot Image");
-			else jpn.doAction("Screenshot Background");
+			String selectedComboItem = ((JLabel)combo1.getSelectedItem()).getName();
+			if(selectedComboItem.equals("Image"))
+				jpn.doAction("Screenshot Image");
+			else
+				jpn.doAction("Screenshot Background");
 		}
 		else jpn.doAction(action);			
 	}
@@ -1473,7 +1491,7 @@ class printOptionsListener implements ActionListener {
 		this.jf = jf;
 		jpn = jarn.jrnlPane;
 		jp = jpn.jpages;
-		jw = new JDialog(jf, "Print Options", false);
+		jw = new JDialog(jf, Jarnal.trans("Print Options"), false);
 		jw.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		Container cp = jw.getContentPane();
 		cp.setLayout(new GridBagLayout());
@@ -1483,54 +1501,76 @@ class printOptionsListener implements ActionListener {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		jcb1 = new JCheckBox("Align to Margins");
+		String action = "Align to Margins";
+		jcb1 = new JCheckBox(Jarnal.trans(action));
+		jcb1.setActionCommand(action);
 		jcb1.addActionListener(this);
 		if(jarn.alignToMargins) jcb1.setSelected(true);
 		cp.add(jcb1, c);	
 		c.gridy++;
-		jcb2 = new JCheckBox("Fit to Page");
+		action = "Fit to Page";
+		jcb2 = new JCheckBox(Jarnal.trans(action));
+		jcb2.setActionCommand(action);
 		jcb2.addActionListener(this);
 		if(jarn.bestFit) jcb2.setSelected(true);
 		cp.add(jcb2, c);
 		c.gridy++;
-		jcb3 = new JCheckBox("Absolute Scale");
+		action = "Absolute Scale";
+		jcb3 = new JCheckBox(Jarnal.trans(action));
+		jcb3.setActionCommand(action);
 		jcb3.addActionListener(this);
 		if(jarn.absoluteScale) jcb3.setSelected(true);
 		cp.add(jcb3, c);	
 		c.gridy++;
-		jcb4 = new JCheckBox("Show Page Numbers");
+		action = "Show Page Numbers";
+		jcb4 = new JCheckBox(Jarnal.trans(action));
+		jcb4.setActionCommand(action);
 		jcb4.addActionListener(this);
 		if(jarn.showPageNumbers) jcb4.setSelected(true);
 		cp.add(jcb4, c);
 		c.gridy++;
-		jcb5 = new JCheckBox("Print Borders");
+		action = "Print Borders";
+		jcb5 = new JCheckBox(Jarnal.trans(action));
+		jcb5.setActionCommand(action);
 		jcb5.addActionListener(this);
 		if(jarn.withBorders) jcb5.setSelected(true);
 		cp.add(jcb5, c);
 		c.gridy++;
-		JButton item = new JButton("Exit This Dialog");
+		action = "Exit This Dialog";
+		JButton item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
 		if(!jarn.isApplet){
 			c.gridy++;
-			item = new JButton("Print as PDF");
+			action = "Print as PDF";
+			item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
 			item.addActionListener(this);
 			cp.add(item, c);
 			c.gridy++;
-			item = new JButton("Send PDF as Email");
+			action = "Send PDF as Email";
+			item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
 			item.addActionListener(this);
 			cp.add(item, c);
 			c.gridy++;
-			item = new JButton("Print Background");
+			action = "Print Background";
+			item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
 			item.addActionListener(this);
 			//cp.add(item, c);
 			//c.gridy++;
-			item = new JButton("Print via PDF");
+			action = "Print via PDF";
+			item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
 			item.addActionListener(this);
 			//cp.add(item, c);
 		}
 		c.gridy++;
-		item = new JButton("Print");
+		action = "Print";
+		item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
             	//jw.setSize(new Dimension(240, 300));
@@ -2119,7 +2159,8 @@ class textDialogListener implements ActionListener {
 
 	private void setCombo(JComboBox cb, String[] ls, String targ){
 		for(int ii = 0; ii < ls.length; ii++){
-			if(targ.toLowerCase().equals(ls[ii].toLowerCase())) cb.setSelectedIndex(ii);
+			if(targ.toLowerCase().equals(ls[ii].toLowerCase()))
+				cb.setSelectedIndex(ii);
 		}
 	}
 
@@ -2143,7 +2184,7 @@ class textDialogListener implements ActionListener {
 		this.jf = jf;
 		jpn = jarn.jrnlPane;
 		jp = jpn.jpages;
-		jw = new JDialog(jf, "Text Style", false);
+		jw = new JDialog(jf, Jarnal.trans("Text Style"), false);
 		jw.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		Container cp = jw.getContentPane();
 		cp.setLayout(new GridBagLayout());
@@ -2152,15 +2193,22 @@ class textDialogListener implements ActionListener {
 		c.gridwidth = 1;
 		c.gridx = 0;
 		c.gridy = 0;
-		JButton item = new JButton("Undo");
+		String action = "undo";
+		action = "Undo";
+		JButton item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c); 
 		c.gridy++;
-		item = new JButton("Redo");
+		action = "Redo";
+		item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
 		c.gridy++;
-		item = new JButton("Update");
+		action = "Update";
+		item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -2168,34 +2216,55 @@ class textDialogListener implements ActionListener {
 		JLabel label = new JLabel(" ");
 		cp.add(label, c);
 		c.gridy++;
-		jcb1 = new JCheckBox("Bold Text");
+		action = "Bold Text";
+		jcb1 = new JCheckBox(Jarnal.trans(action));
+		jcb1.setActionCommand(action);
 		jcb1.addActionListener(this);
 		cp.add(jcb1, c);
 		c.gridy++;
-		jcb2 = new JCheckBox("Underline Text");
+		action = "Underline Text";
+		jcb2 = new JCheckBox(Jarnal.trans(action));
+		jcb2.setActionCommand(action);
 		jcb2.addActionListener(this);
 		cp.add(jcb2, c);
 		c.gridy++;
-		jcb3 = new JCheckBox("Italic Text");
+		action = "Italic Text";
+		jcb3 = new JCheckBox(Jarnal.trans(action));
+		jcb3.setActionCommand(action);
 		jcb3.addActionListener(this);
 		cp.add(jcb3, c);
 		c.gridy++;
-		JLabel jmi[] = new JLabel[10];
-			for(int ii = 0; ii < 10; ii++) jmi[ii] = new JLabel(sels1[ii], new colorIcon(cols1[ii]), JLabel.CENTER);
-		combo1 = new JComboBox(jmi); 
+		JLabel jmi1[] = new JLabel[sels1.length];
+		for(int ii = 0; ii < sels1.length; ii++) {
+			jmi1[ii] = new JLabel(Jarnal.trans(sels1[ii]), new colorIcon(cols1[ii]), JLabel.CENTER);
+			jmi1[ii].setName(sels1[ii]);
+		}
+		combo1 = new JComboBox(jmi1); 
 		combo1.setRenderer(new labelCellRenderer());	
 		//combo1 = new JComboBox(sels1); 
 		combo1.addActionListener(this);
 	    	cp.add(combo1, c);
 		c.gridy++;
-		combo2 = new JComboBox(sels2); 
+		JLabel jmi2[] = new JLabel[sels2.length];
+		for(int ii = 0; ii < sels2.length; ii++) {
+			jmi2[ii] = new JLabel(Jarnal.trans(sels2[ii]));
+			jmi2[ii].setName(sels2[ii]);
+		}
+		combo2 = new JComboBox(jmi2); 
+		combo2.setRenderer(new labelCellRenderer());
 		combo2.addActionListener(this);
 	    	cp.add(combo2, c);
 		c.gridy++;
 		String fn[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 		sels3 = new String[fn.length];
-		for(int i = 0; i < fn.length; i++) sels3[i] = "Font " + fn[i];
-		combo3 = new JComboBox(sels3); 
+		JLabel jmi3[] = new JLabel[fn.length];
+		for(int i = 0; i < fn.length; i++) {
+			jmi3[i] = new JLabel(Jarnal.trans("Font") + " " + fn[i]);
+			sels3[i] = "Font " + fn[i];
+			jmi3[i].setName(sels3[i]);
+		}
+		combo3 = new JComboBox(jmi3);
+		combo3.setRenderer(new labelCellRenderer());
 		combo3.addActionListener(this);
 	    	cp.add(combo3, c);
 		c.gridy++;
@@ -2203,11 +2272,15 @@ class textDialogListener implements ActionListener {
 		cp.add(label, c);
 		c.gridy++;		
 		c.fill = GridBagConstraints.NONE;
-		item = new JButton("Set Text Default");
+		action = "Set Text Default";
+		item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
 		c.gridy++;		
-		item = new JButton("Done");
+		action = "Done";
+		item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
 		setDialog();		
@@ -2223,13 +2296,7 @@ class textDialogListener implements ActionListener {
 		System.out.println(action);
 		if(action.equals("comboBoxChanged")){
 			JComboBox cb = (JComboBox)e.getSource();
-			try{
-        			action = (String)cb.getSelectedItem();
-			}
-			catch(Exception ex){
-				JLabel jl = (JLabel) cb.getSelectedItem();
-				action = jl.getText();
-			}
+        		action = ((JLabel)cb.getSelectedItem()).getName();
 			System.out.println(action);
 		}
 		if(action.equals("Done")) jw.setVisible(false);
@@ -2256,7 +2323,7 @@ class selectionDialogListener implements ActionListener {
 		this.curPen = curPen;
 		this.jarn = jarn;
 		jp = jarn.jrnlPane.jpages;
-		jw = new JDialog(jf, "Modify Selection", false);
+		jw = new JDialog(jf, Jarnal.trans("Modify Selection"), false);
 		jw.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		Container cp = jw.getContentPane();
 		cp.setLayout(new GridBagLayout());
@@ -2265,11 +2332,15 @@ class selectionDialogListener implements ActionListener {
 		c.gridwidth = 2;
 		c.gridx = 0;
 		c.gridy = 0;
-		JButton item = new JButton("Undo");
+		String action = "Undo";
+		JButton item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c); 
 		c.gridx = 2;
-		item = new JButton("Redo");
+		action = "Redo";
+		item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -2284,15 +2355,20 @@ class selectionDialogListener implements ActionListener {
 		cp.add(spinner, c);
 		c.gridx = 1;
 		c.weightx = 0;
-		item = new JButton("Pen Width        ");
+		action = "Pen Width";
+		item = new JButton(Jarnal.trans(action) + "        ");
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
 		c.gridwidth = 2;
 		c.gridx = 0;
 		c.gridy++;
 		String sels1[] = {"no change", "black", "blue", "green", "gray", "magenta", "orange", "pink", "red", "white", "yellow"};
-		JLabel jmi[] = new JLabel[11];
-			for(int ii = 0; ii < 11; ii++) jmi[ii] = new JLabel(sels1[ii], new colorIcon(sels1[ii]), JLabel.CENTER);
+		JLabel jmi[] = new JLabel[sels1.length];
+		for(int ii = 0; ii < sels1.length; ii++) {
+			jmi[ii] = new JLabel(Jarnal.trans(sels1[ii]), new colorIcon(sels1[ii]), JLabel.CENTER);
+			jmi[ii].setName(sels1[ii]);
+		}
 		combo1 = new JComboBox(jmi); 
 		combo1.setRenderer(new labelCellRenderer());
 		combo1.addActionListener(this);
@@ -2305,7 +2381,9 @@ class selectionDialogListener implements ActionListener {
 		cp.add(spinner, c);
 		c.gridx = 1;
 		c.weightx = 0;
-		item = new JButton("Arrow Weight");
+		action = "Arrow Weight";
+		item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
 		c.gridwidth = 2;
@@ -2320,7 +2398,9 @@ class selectionDialogListener implements ActionListener {
 		cp.add(spinner, c);
 		c.gridx = 3;
 		c.weightx = 0;
-		item = new JButton("Highlighter Width");
+		action = "Highlighter Width";
+		item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
 		c.gridwidth = 2;
@@ -2328,7 +2408,10 @@ class selectionDialogListener implements ActionListener {
 		c.gridy++;
 		//String sels2[] = {"no change", "black", "blue", "green", "gray", "magenta", "orange", "pink", "red", "white", "yellow"};
 		jmi = new JLabel[11];
-		for(int ii = 0; ii < 11; ii++) jmi[ii] = new JLabel(sels1[ii] + " highlighter", new colorIcon(sels1[ii]), JLabel.CENTER);
+		for(int ii = 0; ii < 11; ii++) {
+			jmi[ii] = new JLabel(sels1[ii] + " " + Jarnal.trans("highlighter"), new colorIcon(sels1[ii]), JLabel.CENTER);
+			jmi[ii].setName(sels1[ii] + " highlighter");
+		}
 		//for(int ii = 1; ii < sels2.length; ii++) sels2[ii] = sels2[ii] + " highlighter";
 		combo2 = new JComboBox(jmi); 
 		combo2.setRenderer(new labelCellRenderer());
@@ -2336,8 +2419,13 @@ class selectionDialogListener implements ActionListener {
     		cp.add(combo2, c);
 		c.gridy++;
 		String sels3[] = {"No Change", "Translucent", "Transparent"};
-		//for(int ii = 0; ii < sels2.length; ii++) sels2[ii] = sels2[ii] + " highlighter";
-		combo3 = new JComboBox(sels3); 
+		JLabel jmi3[] = new JLabel[sels3.length];
+		for(int ii = 0; ii < sels3.length; ii++) {
+			jmi3[ii] = new JLabel(Jarnal.trans(sels3[ii]));
+			jmi3[ii].setName(sels3[ii]);
+		}
+		combo3 = new JComboBox(jmi3); 
+		combo3.setRenderer(new labelCellRenderer());
 		combo3.addActionListener(this);
     		cp.add(combo3, c);
 		c.gridy++;
@@ -2347,15 +2435,21 @@ class selectionDialogListener implements ActionListener {
 		c.gridx = 0;
 		c.gridwidth = 4;
 		c.fill = GridBagConstraints.NONE;
-		item = new JButton("Smooth Strokes");
+		action = "Smooth Strokes";
+		item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
 		c.gridy++;
-		item = new JButton("Apply Current Pen");
+		action = "Apply Current Pen";
+		item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c); 
 		c.gridy++;           
-		item = new JButton("Done");
+		action = "Done";
+		item = new JButton(Jarnal.trans(action));
+		item.setActionCommand(action);
 		item.addActionListener(this);
 		cp.add(item, c);
 		jw.setSize(new Dimension(420, 260));
@@ -2368,13 +2462,7 @@ class selectionDialogListener implements ActionListener {
 		String action = e.getActionCommand();
 		if(action.equals("comboBoxChanged")){
 			JComboBox cb = (JComboBox)e.getSource();
-			try{
-        			action = (String)cb.getSelectedItem();
-			}
-			catch(Exception ex){
-				JLabel jl = (JLabel) cb.getSelectedItem();
-				action = jl.getText();
-			}
+        		action = ((JLabel)cb.getSelectedItem()).getName();
 			if(!action.equals("Translucent") && !action.equals("Transparent")){
 				if(action.endsWith("highlighter")){
 					int n = action.indexOf(" ");

@@ -207,7 +207,7 @@ Portable Backgrounds===Portierbare Hintergründe===
 Record===Aufnahme===
 Save On Exit===Beim Beenden speichern===
 Save User Info===Benutzerinformation speichern===
-Exit This Dialog===Diesen Dialog beenden===
+Exit This Dialog===Diesen Dialog schließen===
 Send As Email===Als E-Mail versenden===
 Save===Speichern===
 Save As===Speichern unter===
@@ -287,21 +287,27 @@ Open===Öffnen===
 Remove===Entfernen===
 Apply Paper to All Pages===Papier auf alle Seiten anwenden===
 Apply to All with Background===Auf alle Seiten mit Hintergrund anwenden===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
-=== ===
+
+# Print Options dialog
+Print Options===Druckoptionen===
+Align to Margins===An Seitenrändern anpassen===
+Fit to Page===An Seite anpassen===
+Absolute Scale===Absolute Größe===
+Show Page Numbers===Seiten durchnummerieren===
+Print Borders===Seitengrenzen drucken===
+Print as PDF===Als PDF drucken===
+Send PDF as Email===PDF als E-Mail verschicken===
+Print Background===Hintergrund drucken===
+Print via PDF===Via PDF drucken===
+
+# Screenshot dialog
+Insert Screenshot===Screenshot einfügen===
+Background Screenshot=== Screenshot als Hintergrund===
+Image===Bild===
+Entire Screen===Ganzer Bildschirm===
+Minimize for Screenshot===Fürs Aufnehmen Minimieren===
+Cancel===Abbrechen===
+Shoot===Aufnehmen===
 === ===
 === ===
 === ===

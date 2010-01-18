@@ -6445,7 +6445,7 @@ System.out.println(target);
 			dragOp = 113;
 			standardCursor();
 			setStatus("");
-			return;	
+			return;
 		}
 		scr = null;
 	   }
