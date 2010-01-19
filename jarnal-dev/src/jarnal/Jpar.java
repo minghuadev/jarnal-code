@@ -141,11 +141,11 @@ class Jchar{
 	public String getHtmlDesc(){
 		String d = "";
 		String f = font;
-		if(bold) f = f + " bold";
+		if(bold) f = f + " " + Jarnal.trans("bold");
 		if(italic) f = "<I>" + f + "</I>";
 		if(underline) f = "<U>" + f + "</U>";
-		d = f + " " + size + "pt";
-		d = d + " " + cname;
+		d = f + " " + size + Jarnal.trans("pt");
+		d = d + " " + Jarnal.trans(cname);
 		return d;
 	}
 	

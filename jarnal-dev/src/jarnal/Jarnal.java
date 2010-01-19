@@ -7633,7 +7633,7 @@ System.out.println(target);
 		Runtime rt = Runtime.getRuntime();
 		float test = (float)rt.freeMemory() + (float)Jtool.maxMemory() - (float)rt.totalMemory();
 		test = 100.0f - (100.0f *test/(float) Jtool.maxMemory());
-		freemem = " &nbsp;&nbsp;mem: " + (int) test + "%";
+		freemem = " &nbsp;&nbsp;" + Jarnal.trans("mem") + ": " + (int) test + "%";
 		if(test > 90.0f) freemem = "<font color=red>" + freemem + "</font>";
 	    }
 	    String dstring = "";
@@ -7651,12 +7651,12 @@ System.out.println(target);
 	    tstring = Jtool.lastToHtml(tstring);
 	    stat = "";
 	    if(actionMsg != "") stat = "&lt;" + actionMsg + "&gt;";
-	    if(dragOp == 113) stat = "&lt;Click to insert image&gt;";
-	    if(dragOp == 114) stat = "&lt;Click to paste&gt;";
-	    if(dragOp == 117) stat = "&lt;Click to link&gt;";
-	    String pstatus = "Page";
- 	    if(!textMode && jpages.pageSelected()) pstatus = "<font color=blue>Page</font>";
-            if(!fullScreen) statusBar.setText("<html>" + pstatus + " " + jpages.getPage() + " of " + jpages.getPages() + " " + dstring + fstring + " " + tstring + " &nbsp;" + jt.htmlDesc() + " "  + stat + " &nbsp;" + jpages.getPaperDesc(absoluteScale) + serverMsg + freemem + "</html>");
+	    if(dragOp == 113) stat = "&lt;" + Jarnal.trans("Click to insert image") + "&gt;";
+	    if(dragOp == 114) stat = "&lt;" + Jarnal.trans("Click to paste") + "&gt;";
+	    if(dragOp == 117) stat = "&lt;" + Jarnal.trans("Click to link") + "&gt;";
+	    String pstatus = Jarnal.trans("Page");
+ 	    if(!textMode && jpages.pageSelected()) pstatus = "<font color=blue>" + Jarnal.trans("Page") + "</font>";
+            if(!fullScreen) statusBar.setText("<html>" + pstatus + " " + jpages.getPage() + " " + Jarnal.trans("of") + " " + jpages.getPages() + " &nbsp;" + dstring + fstring + Jarnal.trans("Font") + ": " + tstring + " &nbsp;" + jt.htmlDesc() + " "  + stat + " &nbsp;" + jpages.getPaperDesc(absoluteScale) + serverMsg + " " + freemem + "</html>");
 	    pageLabel.setText("" + jpages.getPage() + "/" + jpages.getPages());
 	}
 

@@ -375,11 +375,11 @@ public class Jtool{
 	}
 
 	public String htmlDesc(){
-		String pen = "pen";
-		if(highlighter) pen = "highlighter";
-		if(transparency == 100) pen = "translucent";
-		if(transparency == 60) pen = "transparent";		
-		return type + " <font color=#" + getRGB(getColor()) + ">" + color + "</font> " + pen;
+		String pen = Jarnal.trans("Pen");
+		if(highlighter) pen = Jarnal.trans("highlighter");
+		if(transparency == 100) pen = Jarnal.trans("translucent");
+		if(transparency == 60) pen = Jarnal.trans("transparent");
+		return pen + ": " + Jarnal.trans(type) + " <font color=#" + getRGB(getColor()) + ">" + Jarnal.trans(color) + "</font> ";
 	}
 
 	public penDialogListener showDialog(JFrame jf, Jtool curPen, Jtool defPen, Jtool defHigh, Jtool defBut, Jarnal jarn){
@@ -433,7 +433,7 @@ public class Jtool{
 			this.jarn = jarn;
 			oldparent = new Jtool();
 			oldparent.fullCopy(parent);
-			jw = new JDialog(jf, "Choose Pen", true);
+			jw = new JDialog(jf, Jarnal.trans("Choose Pen"), true);
 			jw.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 			Container cp = jw.getContentPane();
 			cp.setLayout(new GridBagLayout());
@@ -445,7 +445,7 @@ public class Jtool{
 			c.gridx = 0;
 			c.gridy = 5;
 			c.anchor = GridBagConstraints.SOUTHWEST;
-			JLabel label = new JLabel("Base Pen Thickness");
+			JLabel label = new JLabel(Jarnal.trans("Base Pen Thickness"));
 			cp.add(label, c);
 			c.gridy = 6;
 			c.anchor = GridBagConstraints.NORTHWEST;
@@ -454,7 +454,7 @@ public class Jtool{
 			cp.add(spinner, c);
 			c.gridy = 7;
 			c.anchor = GridBagConstraints.SOUTHWEST;
-			label = new JLabel("Base Highlighter Transparency");
+			label = new JLabel(Jarnal.trans("Base Highlighter Transparency"));
 			cp.add(label, c);
 			c.gridy = 8;
 			c.anchor = GridBagConstraints.NORTHWEST;
@@ -463,7 +463,7 @@ public class Jtool{
 			cp.add(spinner, c);
 			c.gridy = 9;
 			c.anchor = GridBagConstraints.SOUTHWEST;
-			label = new JLabel("Fat Width");
+			label = new JLabel(Jarnal.trans("Fat Width"));
 			cp.add(label, c);
 			c.gridy = 10;
 			c.anchor = GridBagConstraints.NORTHWEST;
@@ -472,7 +472,7 @@ public class Jtool{
 			cp.add(spinner, c);
 			c.gridy = 11;
 			c.anchor = GridBagConstraints.SOUTHWEST;
-			label = new JLabel("Arrow Weight");
+			label = new JLabel(Jarnal.trans("Arrow Weight"));
 			cp.add(label, c);
 			c.gridy = 12;
 			c.anchor = GridBagConstraints.NORTHWEST;
@@ -483,61 +483,93 @@ public class Jtool{
 			cp.add(new JLabel(" "), c);
 			c.gridy = 2;
 			String sels1[] = {"Fine", "Medium", "Heavy", "Fat"};
-			combo1 = new JComboBox(sels1);
+			JLabel jmi1[] = new JLabel[sels1.length];
+			for(int ii = 0; ii < sels1.length; ii++) {
+				jmi1[ii] = new JLabel(Jarnal.trans(sels1[ii]));
+				jmi1[ii].setName(sels1[ii]);
+			}
+			combo1 = new JComboBox(jmi1);
+			combo1.setRenderer(new labelCellRenderer());
 			combo1.addActionListener(this);
 			cp.add(combo1, c);
 			c.gridy = 3;
 			String sels2[] = {"black", "blue", "green", "gray", "magenta", "orange", "pink", "red", "white", "yellow"};
-			JLabel jmi[] = new JLabel[10];
-			for(int ii = 0; ii < 10; ii++) jmi[ii] = new JLabel(sels2[ii], new colorIcon(sels2[ii]), JLabel.CENTER);
-			combo2 = new JComboBox(jmi); 
+			JLabel jmi2[] = new JLabel[sels2.length];
+			for(int ii = 0; ii < sels2.length; ii++) {
+				jmi2[ii] = new JLabel(Jarnal.trans(sels2[ii]), new colorIcon(sels2[ii]), JLabel.CENTER);
+				jmi2[ii].setName(sels2[ii]);
+			}
+			combo2 = new JComboBox(jmi2);
 			combo2.setRenderer(new labelCellRenderer());
 			combo2.addActionListener(this);
 	    		cp.add(combo2, c);
 			c.gridy = 4;
 			//c.gridx = 0;
 			String sels3[] = {"Pen", "Translucent Highlighter", "Transparent Highlighter", "Bottom Highlighter"};
-			combo3 = new JComboBox(sels3);
+			JLabel jmi3[] = new JLabel[sels3.length];
+			for(int ii = 0; ii < sels3.length; ii++) {
+				jmi3[ii] = new JLabel(Jarnal.trans(sels3[ii]));
+				jmi3[ii].setName(sels3[ii]);
+			}
+			combo3 = new JComboBox(jmi3);
+			combo3.setRenderer(new labelCellRenderer());
 			combo3.addActionListener(this);
 	    		cp.add(combo3, c);
-
 			c.anchor = GridBagConstraints.NORTHEAST;
 			c.gridy = 0;
 			c.gridx = 1;
-			JButton item = new JButton("Cancel");
+			String action = "Cancel";
+			JButton item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
 			item.addActionListener(this);
 			cp.add(item, c);
 			c.gridy = 2;		
-			item = new JButton("Get Default Pen");
+			action = "Get Default Pen";
+			item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
 			item.addActionListener(this);
 			cp.add(item, c);
 			c.gridy = 3;		
-			item = new JButton("Get Default Highlighter");
+			action = "Get Default Highlighter";
+			item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
 			item.addActionListener(this);
 			cp.add(item, c);
-			c.gridy = 4;		
-			item = new JButton("Get Button Pen");
+			c.gridy = 4;
+			action = "Get Button Pen";
+			item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
 			item.addActionListener(this);
 			cp.add(item, c);
-			c.gridy = 5;		
-			item = new JButton("Get Current Pen");
-			item.addActionListener(this);
-			cp.add(item, c);
-			c.gridy++;
-			c.gridy++;
-			item = new JButton("Set Globals");
-			item.addActionListener(this);
-			cp.add(item, c);
-			c.gridy++;		
-			item = new JButton("Set Default");
+			c.gridy = 5;
+			action = "Get Current Pen";
+			item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
 			item.addActionListener(this);
 			cp.add(item, c);
 			c.gridy++;
-			item = new JButton("Set Button Pen");
+			c.gridy++;
+			action = "Set Globals";
+			item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
 			item.addActionListener(this);
 			cp.add(item, c);
 			c.gridy++;
-			item = new JButton("Set Current Pen");
+			action = "Set Default";
+			item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
+			item.addActionListener(this);
+			cp.add(item, c);
+			c.gridy++;
+			action = "Set Button Pen";
+			item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
+			item.addActionListener(this);
+			cp.add(item, c);
+			c.gridy++;
+			action = "Set Current Pen";
+			item = new JButton(Jarnal.trans(action));
+			item.setActionCommand(action);
 			item.addActionListener(this);
 			cp.add(item, c);
 			setDialog();
@@ -554,14 +586,7 @@ public class Jtool{
 			String action = e.getActionCommand();
 			if(action.equals("comboBoxChanged")){
 				JComboBox cb = (JComboBox)e.getSource();
-				String test = null;
-				try{
-        				test = (String)cb.getSelectedItem();
-				}
-				catch(Exception ex){
-					JLabel jl = (JLabel)cb.getSelectedItem();
-					test = jl.getText();
-				}
+				String test = ((JLabel)cb.getSelectedItem()).getName();
 			}
 			if(action.startsWith("Get")){
 				if(action.equals("Get Default Highlighter")) parent.fullCopy(defHigh);
@@ -572,8 +597,8 @@ public class Jtool{
 			}
 			if(action.startsWith("Set")){
 				JLabel jl = (JLabel)combo2.getSelectedItem();
-				color = (String)jl.getText();
-				String test = (String)combo3.getSelectedItem();
+				color = jl.getName();
+				String test = ((JLabel)combo3.getSelectedItem()).getName();
 				highlighter = false;
 				transparency = 255;
 				if(test.equals("Translucent Highlighter")) {
@@ -607,7 +632,7 @@ public class Jtool{
 				defBut.hTrans = x;
 				parent.hTrans = x;				
 				jarn.markerweight = model3.getNumber().intValue();
-				setWidth((String)combo1.getSelectedItem());
+				setWidth(((JLabel)combo1.getSelectedItem()).getName());
 				boolean setHigh = false;
 				if(highlighter || (transparency != 255)) setHigh = true;
 				if(action.equals("Set Default")){
