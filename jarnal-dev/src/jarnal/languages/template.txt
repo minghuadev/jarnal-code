@@ -107,9 +107,19 @@ High Quality=== ===
 Normal Quality=== ===
 Low Quality=== ===
 
-Background Quality=== ===
+# Status Bar
+Click to insert image=== ===
+Click to paste=== ===
+Click to link=== ===
+Page=== ===
+of=== ===
+mem=== ===
+bold=== ===
+pt=== ===
+Font=== ===
 
 # Background Quality submenu
+Background Quality=== ===
 Default Quality=== ===
 Good Quality=== ===
 Highest Quality=== ===
@@ -164,6 +174,7 @@ Arrow=== ===
 Ruler=== ===
 Select Rectangle=== ===
 Select=== ===
+Right Button=== ===
 Middle Button=== ===
 
 # Middle Button Submenu
@@ -241,6 +252,16 @@ black=== ===
 gray=== ===
 magenta=== ===
 red=== ===
+White=== ===
+Yellow=== ===
+Pink=== ===
+Orange=== ===
+Blue=== ===
+Green=== ===
+Black=== ===
+Gray=== ===
+Magenta=== ===
+Red=== ===
 
 # Paper dialog
 Lined=== ===
@@ -360,3 +381,18 @@ Set Globals=== ===
 Set Default=== ===
 Set Button Pen=== ===
 Set Current Pen=== ===
+
+# Exit Dialog
+Unsaved data will be lost. OK to exit?=== ===
+Exit Without Saving=== ===
+
+# Find Dialog
+Match Case=== ===
+Entire Word=== ===
+First=== ===
+Entire Document=== ===
+Reverse=== ===
+
+# Color Trap dialog
+Color Trap=== ===
+Enable Color Trap=== ===
