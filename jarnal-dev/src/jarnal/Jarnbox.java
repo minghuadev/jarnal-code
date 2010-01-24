@@ -751,7 +751,6 @@ class paperDialogListener implements ActionListener {
 	Jarnal jarn;
 	Jpages jp;
 	Jarnal.JrnlPane jpn;
-	int counter=1;
 	boolean init = true;
 
 	private void setRuling(){
@@ -916,7 +915,7 @@ class paperDialogListener implements ActionListener {
 			jmi4[ii].setName(sels4[ii]);
 		}
 		combo4 = new JComboBox(jmi4);
-		combo4.setSelectedIndex(2);
+		combo4.setSelectedIndex(4);
 		combo4.setRenderer(new labelCellRenderer());
 		combo4.addActionListener(this);
 	    	cp.add(combo4, c);
