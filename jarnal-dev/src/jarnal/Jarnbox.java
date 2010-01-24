@@ -751,28 +751,64 @@ class paperDialogListener implements ActionListener {
 	Jarnal jarn;
 	Jpages jp;
 	Jarnal.JrnlPane jpn;
+	int counter=1;
+	boolean init = true;
 
 	private void setRuling(){
 		jp = jpn.jpages;
 		int transparency = jp.getPaper().transparency;
-		combo5.setSelectedIndex(3);
-		if(transparency == 100) combo5.setSelectedIndex(1);
-		else if(transparency == 60) combo5.setSelectedIndex(2);
-		else if(transparency == 255) combo5.setSelectedIndex(0);
+		if(transparency == 100) {
+			if(combo5.getSelectedIndex() != 1)
+				combo5.setSelectedIndex(1);
+		}
+		else if(transparency == 60) {
+			if(combo5.getSelectedIndex() != 2)
+				combo5.setSelectedIndex(2);
+		}
+		else if(transparency == 255) {
+			if(combo5.getSelectedIndex() != 0)
+				combo5.setSelectedIndex(0);
+		}
+		else if(combo5.getSelectedIndex() != 3) {
+			combo5.setSelectedIndex(3);
+		}
 		model2.setValue(new Double(transparency));
 		model3.setValue(new Double(jp.bgFade()));
 		model4.setValue(new Double(jp.bgindex()));
 		model5.setValue(new Double(jp.bgScale()));
 		String paper = jp.getPaper().paper;
-		if(paper.equals("Lined")) combo2.setSelectedIndex(0);
-		if(paper.equals("Plain")) combo2.setSelectedIndex(1);
-		if(paper.equals("Graph")) combo2.setSelectedIndex(2);
-		if(paper.equals("Ruled")) combo2.setSelectedIndex(3);
+		if(paper.equals("Lined")) {
+			if(combo2.getSelectedIndex() != 0)
+				combo2.setSelectedIndex(0);
+		}
+		else if(paper.equals("Plain")) {
+			if(combo2.getSelectedIndex() != 1)
+				combo2.setSelectedIndex(1);
+		}
+		else if(paper.equals("Graph")) {
+			if(combo2.getSelectedIndex() != 2)
+				combo2.setSelectedIndex(2);
+		}
+		else if(paper.equals("Ruled")) {
+			if(combo2.getSelectedIndex() != 3)
+				combo2.setSelectedIndex(3);
+		}
 		int nlines = jp.getPaper().nlines;
-		combo3.setSelectedIndex(3);
-		if(nlines == 15) combo3.setSelectedIndex(0);
-		if(nlines == 25) combo3.setSelectedIndex(1);
-		if(nlines == 35) combo3.setSelectedIndex(2);
+		if(nlines == 15) {
+			if(combo3.getSelectedIndex() != 0)
+				combo3.setSelectedIndex(0);
+		}
+		else if(nlines == 25) {
+			if(combo3.getSelectedIndex() != 1)
+				combo3.setSelectedIndex(1);
+		}
+		else if(nlines == 35) {
+			if(combo3.getSelectedIndex() != 2)
+				combo3.setSelectedIndex(2);
+		}
+		else if (combo3.getSelectedIndex() != 3) {
+			combo3.setSelectedIndex(3);
+		}
 		model1.setValue(new Double(nlines));
 		if(jp.getPaper().showBg == 1) jcb1.setSelected(true);
 		else jcb1.setSelected(false);
@@ -784,6 +820,7 @@ class paperDialogListener implements ActionListener {
 		else jcb4.setSelected(false);
 		if(jarn.absoluteScale) jcb5.setSelected(true);
 		else jcb5.setSelected(false);
+		if(init) init = false;
 	}
 
 	public void showDialog(JFrame jf, Jarnal jarn){
@@ -1069,10 +1106,11 @@ class paperDialogListener implements ActionListener {
 		if(action.equals("comboBoxChanged")){
 			JComboBox cb = (JComboBox)e.getSource();
         		action = ((JLabel)cb.getSelectedItem()).getName();
-			System.out.println(action);
+			System.out.println("comboBoxChanged: " + action);
 		}
 		else System.out.println(action);
-		if(action.equals("white")
+		if(init) return;
+		else if(action.equals("white")
 			|| action.equals("yellow")
 			|| action.equals("pink")
 			|| action.equals("orange")
@@ -1107,13 +1145,17 @@ class paperDialogListener implements ActionListener {
 			jp.bgScale(model5.getNumber().floatValue());
 			jpn.doAction("Redraw Page");
 		}
-		else if(action.equals("Show"))jpn.doAction("Show Background");
+		else if(action.equals("Show")) {
+			jpn.doAction("Show Background");
+		}
 		else if(action.equals("Portable")) {
 			jpn.doAction("Portable Backgrounds");
 			//if(jarn.saveBg) jcb4.setSelected(true);
 			//else jcb4.setSelected(false);
 		}
-		else if(action.equals("Clockwise")) jpn.doAction("Rotate Background");
+		else if(action.equals("Clockwise")) {
+			jpn.doAction("Rotate Background");
+		}
 		else if(action.equals("Counterclockwise")){
 			jp.setStartMark();
 			jpn.doAction("Rotate Background");
@@ -1127,23 +1169,32 @@ class paperDialogListener implements ActionListener {
 			jpn.doAction("Rotate Background");
 			jp.setEndMark();
 		}
-		else if(action.equals("Save With File")) jpn.doAction("Save Background With File");
+		else if(action.equals("Save With File"))
+			jpn.doAction("Save Background With File");
 		else if(action.equals("other"));
-		else if(action.equals("Update")) jpn.doAction("Redraw Page");
-		else if(action.equals("Insert Text")) jpn.doAction("Insert Background Text");
-		else if(action.equals("Information")) jpn.doAction("Background Information");
-		else if(action.equals("Open")) jpn.doAction("Open Background");
-		else if(action.equals("Remove")) jpn.doAction("Remove Background");
-		else if(action.equals("Absolute Scale")) jpn.doAction("absoluteScale");
-		else if(action.equals("Done")) jw.setVisible(false);
-		else jpn.doAction(action);
+		else if(action.equals("Update"))
+			jpn.doAction("Redraw Page");
+		else if(action.equals("Insert Text"))
+			jpn.doAction("Insert Background Text");
+		else if(action.equals("Information"))
+			jpn.doAction("Background Information");
+		else if(action.equals("Open"))
+			jpn.doAction("Open Background");
+		else if(action.equals("Remove"))
+			jpn.doAction("Remove Background");
+		else if(action.equals("Absolute Scale"))
+			jpn.doAction("absoluteScale");
+		else if(action.equals("Done"))
+			jw.setVisible(false);
+		else
+			jpn.doAction(action);
 		//if(action.equals("Undo") || action.equals("Redo") || action.equals("Update")) {
 		//	jw.setVisible(false);
 		//	showDialog(jf, jarn);
 		//}
 		//if(action.equals("Index Card"))setRuling();
+		
 		setRuling();
-			
 	}
 }
 
