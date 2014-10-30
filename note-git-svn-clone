@@ -1,0 +1,7 @@
+
+
+command: 
+
+    git svn clone svn://svn.code.sf.net/p/jarnal/code/ jarnal-code
+
+
