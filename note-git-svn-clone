@@ -5,3 +5,10 @@ command:
     git svn clone svn://svn.code.sf.net/p/jarnal/code/ jarnal-code
 
 
+
+git svn config (git config -l): 
+
+svn-remote.svn.url=svn://svn.code.sf.net/p/jarnal/code
+svn-remote.svn.fetch=:refs/remotes/git-svn
+
+
